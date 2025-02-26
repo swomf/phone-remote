@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<header>
+</header>
+<body>
+  <style>
+    button {
+      width: 80vw;
+      height: 80vh;
+      font-size: 10vw;
+    }
+    #buttons {
+      height: 100%;
+      display: flex;
+      align-tiems: center;
+      justify-content: center;
+    }
+  </style>
+  <div id="buttons">
+    <button type="button" onclick="clickHandler(104)" style="width: 100vw; height: 30vh; font-size: 10vw">up</button>
+    <button type="button" onclick="clickHandler(109)" style="width: 100vw; height: 30vh; font-size: 10vw;">down</button>
+  </div>
+  <script>
+function clickHandler(n) {
+  fetch('/press', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "Key": n })
+  })
+    .then(response => response.json())
+    .then(response => console.log(JSON.stringify(response)))
+}
+  </script>
+</body>
