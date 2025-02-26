@@ -1,23 +1,27 @@
 <!DOCTYPE HTML>
 <header>
+  <meta name="viewport" 
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
 </header>
 <body>
   <style>
     button {
-      width: 80vw;
-      height: 80vh;
       font-size: 10vw;
     }
-    #buttons {
+    .buttons {
       height: 100%;
-      display: flex;
+      display: grid;
+      grid-template-columns: 50vw 50vw;
+      grid-template-rows: 30vh 30vh;
       align-tiems: center;
       justify-content: center;
     }
   </style>
-  <div id="buttons">
-    <button type="button" onclick="clickHandler(104)" style="width: 100vw; height: 30vh; font-size: 10vw">up</button>
-    <button type="button" onclick="clickHandler(109)" style="width: 100vw; height: 30vh; font-size: 10vw;">down</button>
+  <div class="buttons">
+    <button type="button" onclick="clickHandler(104)">pgup</button>
+    <button type="button" onclick="clickHandler(109)">pgdown</button>
+    <button type="button" onclick="clickHandler(103)">up</button>
+    <button type="button" onclick="clickHandler(108)">down</button>
   </div>
   <script>
 function clickHandler(n) {

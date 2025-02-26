@@ -14,6 +14,8 @@ type keyboardInput struct {
 
 var epickeyboard uinput.Keyboard
 
+var allowedKeys []int
+
 func press(w http.ResponseWriter, req *http.Request) {
 	decoder := json.NewDecoder(req.Body)
 
@@ -28,6 +30,12 @@ func press(w http.ResponseWriter, req *http.Request) {
 		fallthrough
 	case uinput.KeyPageup:
 		epickeyboard.KeyPress(t.Key)
+	case uinput.KeyUp:
+		fallthrough
+	case uinput.KeyDown:
+		for i := 0; i < 3; i++ {
+			epickeyboard.KeyPress(t.Key)
+		}
 	default:
 		fmt.Fprintf(w, "Evil man.")
 	}
@@ -42,6 +50,8 @@ func press(w http.ResponseWriter, req *http.Request) {
 // alternatively (to use specific version), use this:
 // import "gopkg.in/bendahl/uinput.v1"
 func main() {
+	allowedKeys = []int{uinput.KeyDown, uinput.KeyUp, uinput.KeyPagedown, uinput.KeyPageup}
+
 	keyboard, err := uinput.CreateKeyboard("/dev/uinput", []byte("testkeyboard"))
 	if err != nil {
 		return
