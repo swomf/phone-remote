@@ -58,7 +58,6 @@ func main() {
 	}
 	epickeyboard = keyboard
 	defer keyboard.Close()
-	keyboard.KeyPress(uinput.KeyDown)
 	http.Handle("/", http.FileServer(http.Dir("./static")))
 
 	http.HandleFunc("/press", press)
