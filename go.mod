@@ -1,4 +1,4 @@
-module autoscroll
+module phone-remote
 
 go 1.23.6
 
